@@ -1,0 +1,16 @@
+doctype html
+html[lang="en"]
+  head
+    meta[charset="utf-8"]
+    title A Brand New nanoc Site | #{@item[:title]}
+    link[rel="stylesheet" href="#{@items['/stylesheet/'].path}"]
+    script[type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"]
+    meta[name="generator" content="nanoc <%= Nanoc::VERSION %>"]
+
+  body
+    == render 'head'
+    
+    #main
+       == yield 
+
+    == render 'footer'
