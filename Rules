@@ -14,13 +14,7 @@
 #   because “*” matches zero or more characters.
 
 
-compile '/posts/*' do
-    filter :kramdown, :input => "GFM"
-#    filter :colorize_syntax, :default_colorizer => :pygmentsrb
-    layout 'post'
-    layout 'default'
-end
-
+# Compile rules for Home page
 compile '/' do
     filter :kramdown, :input => "GFM"
 #    filter :colorize_syntax, :default_colorizer => :pygmentsrb
@@ -28,6 +22,17 @@ compile '/' do
     layout 'default'
 end
 
+
+# Compile rules for Blog entries
+compile '/posts/*' do
+    filter :kramdown, :input => "GFM"
+#    filter :colorize_syntax, :default_colorizer => :pygmentsrb
+    layout 'post'
+    layout 'default'
+end
+
+
+# Compile rules for pages branching directly from Home
 compile '*' do 
   if item[:extension] == 'md'
     filter :kramdown, :input => "GFM"
@@ -43,6 +48,8 @@ compile '*' do
   end
 end
 
+
+# Define URL routes to pages
 route '*' do
   if item[:extension] == 'css'
     # Write item with identifier /foo/ to /foo.css
@@ -56,4 +63,6 @@ route '*' do
   end
 end
 
+
+# Process all layouts using Slim
 layout '*', :slim
